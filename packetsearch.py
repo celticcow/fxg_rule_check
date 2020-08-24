@@ -21,27 +21,9 @@ class packetsearch(object):
         self.packet_mode_json = self.create_json_string()
 
         self.sid = "NA"
-        self.mds = "192.168.159.150"
+        self.mds = "204.135.121.150"
         self.policy2cma = {
-            "DataCenterSeg Network" : "192.168.159.151",
-            "services-zmd Security" : "192.168.159.151",
-            "CyberVault Network" : "192.168.159.151",
-            "WTC_ZMD Security" : "192.168.159.151",
-            "CoLo-West-CommonCompute Network" : "192.168.159.151",
-            "las-prod-lz Network" : "192.168.159.151",
-            "CoLo-UTE-AZ Network" : "192.168.159.155",
-            "Dev-DMZ Security" : "192.168.159.155",
-            "DevTest_Labs Security" : "192.168.159.155",
-            "Dev-ZMD Security" : "192.168.159.155",
-            "FXCC_DevLabs Security" : "192.168.159.155",
-            "SBC Security" : "192.168.159.155",
-            "SIP_Lab Security" : "192.168.159.155",
-            "whqL-Policy Security" : "192.168.159.155",
-            "CoLo-UTE-LZ Network" : "192.168.159.155",
-            "SoftwareDistro Security" : "192.168.159.161",
-            "Services-DMZ Security" : "192.168.159.161",
-            "WTCR_Cluster Security" : "192.168.159.161",
-            "Cloud_Gateway Security" : "192.168.159.167"
+            "7VRF_FXG-Hub Security" : "204.135.121.164"
         }
         #choose from return or <br>
         self.term = term
@@ -202,12 +184,20 @@ class packetsearch(object):
         if(debug == 1):
             print("going into loop", end=self.term)
             print(object_d, end=self.term)
+            print("rulebase", end=self.term)
+            print(result_json['rulebase'][outer_index]['rulebase'], end=self.term)
 
         #working up to this point.  need to check var names and make OOP down.
         
         while(i < total):
             #loop through all the results
             for rule in range(length_of_rulebase):
+                ## if rule is disabled skip it, but increment the counter to stay valid.
+                if(result_json['rulebase'][outer_index]['rulebase'][rule]['enabled'] == False):
+                    print("rule disabled", end=self.term)
+                    i = i + 1
+                    continue
+
                 if(inline == True):
                     print("\tRule Number : " + str(result_json['rulebase'][outer_index]['rulebase'][rule]['rule-number']), end=self.term)
                 else:
