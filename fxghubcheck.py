@@ -21,16 +21,16 @@ import packetsearch from is_needed // code resuse FTW
 """
 
 def main():
-    print("in_function_main")
+    ##print("in_function_main")
 
     debug = 1
-    term = "\n"
+    term = "<br>"
 
     #create instance field storage
     form  = cgi.FieldStorage()
-    ip1   = "146.18.2.137" #form.getvalue('sourceip')
-    ip2   = "10.86.197.165" #form.getvalue('destip')
-    port  = "23" #form.getvalue('service')
+    ip1   = form.getvalue('sourceip')
+    ip2   = form.getvalue('destip')
+    port  = form.getvalue('service')
 
     ## html header and config data dump
     print ("Content-type:text/html\r\n\r\n")

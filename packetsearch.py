@@ -195,6 +195,7 @@ class packetsearch(object):
                 ## if rule is disabled skip it, but increment the counter to stay valid.
                 if(result_json['rulebase'][outer_index]['rulebase'][rule]['enabled'] == False):
                     print("rule disabled", end=self.term)
+                    print("------------------------------------------------------------------", end=self.term)
                     i = i + 1
                     continue
 
